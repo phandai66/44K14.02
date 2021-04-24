@@ -1,0 +1,15 @@
+include ../components/navbar.pug
+.container
+    if books
+        div
+            each book in books
+                div
+                    p
+                        -const url = '/books?id=' + book.id
+                        a(href=url) Tên sách: #{book.bookName}
+                    p Số lượng: #{book.count}
+                    p Giá: #{book.price}
+                    br
+                    br
+                    br
+

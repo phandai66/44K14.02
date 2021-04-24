@@ -1,0 +1,56 @@
+include ../components/head.pug
+block append head 
+  title Giỏ hàng
+include ../components/header.pug
+include ../components/navbar.pug
+.h Giỏ hàng
+hr.ngang
+// Basket
+.giohang
+  .thongtin
+    table.table
+      colgroup
+        col(width='10%', span='1')
+        col(width='40%', span='1')
+        col(width='10%', span='1')
+        col(width='25%', span='1')
+        col(width='15%', span='1')
+      thead
+        tr.table-title
+          th(scope='col') #
+          th(scope='col') Tên sách
+          th(scope='col') Số lượng
+          th(scope='col') Giá
+          th(scope='col') Tiện ích
+      tbody
+        if orders.length > 0
+          each order in orders
+            tr
+              td= order.stt
+              td= order.bookName
+              td(style="display: flex; flex-direction: row; justify-content: center;")
+                a(href=`/remove/${order.bookId}`, style="padding: 0px 15px;")
+                  i(style="font-size: 2rem;").fas.fa-caret-left
+                span= order.quantity
+                a(href=`/add/${order.bookId}`, style="padding: 0px 15px;")
+                  i(style="font-size: 2rem;").fas.fa-caret-right
+              td= order.price
+              td
+                a(href=`/delete/${order.bookId}`)
+                  i(style="font-size: 1.5rem;").fas.fa-trash-alt
+        else
+            tr
+              td(colspan="5") Chưa chọn sản phẩm
+  if total != 0
+    .muahang
+      .thanhtien
+        span Th&agrave;nh ti&#x1EC1;n:
+        span.tongtien= total
+      .wrap-btn
+        a.btn-mua(href='/pay') Mua h&agrave;ng
+// Basket end
+
+
+include ../components/footer.pug
+include ../components/jsscript.pug
+

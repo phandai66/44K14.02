@@ -1,0 +1,27 @@
+include ../components/head.pug
+block append head 
+  title Chi tiết giao dịch bán hàng
+include ../components/header.pug
+include ../components/navbar.pug
+
+.h Chi tiết giao dịch bán hàng
+hr.ngang
+.giohang(style="padding-left: 0px;")
+  .container(style="display: flex; justify-content: center;")
+    .thongtin(style="display: flex; justify-content: center; padding: 20px 0px;")
+      table.table
+        thead
+          tr.table-title
+            th(scope='col') #
+            th(scope='col') Tên sách
+            th(scope='col') Số lượng
+        -let stt = 1
+        
+        tbody
+          tr
+            td 1
+            td #{booksold.bookName}
+            td #{booksold.count}
+
+include ../components/footer.pug
+include ../components/jsscript.pug

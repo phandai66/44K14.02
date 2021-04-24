@@ -1,0 +1,22 @@
+include ../components/navbar.pug
+.container
+    div.row
+        div.col-sm-1
+        div.col-sm-10
+            h1 Thông tin chi tiết
+        div.col-sm-1
+
+    div.table.row.table-borderless
+        div.col-sm-1
+        table.col-sm-10
+            thead
+                tr
+                    th(scope='col') #
+                    th(scope='col') Tên sách
+                    th(scope='col') Số lượng
+            tbody
+                tr
+                    td 1
+                    td #{booksold.bookName}
+                    td #{booksold.count}
+        div.col-sm-1

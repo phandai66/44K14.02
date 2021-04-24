@@ -1,0 +1,35 @@
+include ../components/head.pug
+block append head 
+  title Chi tiết sách
+include ../components/header.pug
+include ../components/navbarAdmin.pug
+
+.h Chi tiết sách bán
+hr.ngang
+.container
+  div.row
+    div.col-sm-4
+    div.col-sm-4
+      if messages
+        each message in messages
+          .alert.alert-danger= message
+    div.col-sm-4
+  div.row.mt-3.mb-5
+    div.col-sm-3
+    form.form-horizontal.col-sm-6(action='/book-manager-details', method='POST')    
+      input(hidden, name='id', value=book.id)
+      .mb-3
+        label.form-label(for='bookName')  Tên sách
+        input#bookName.form-control.form-control-sm(name='bookName', value=book.bookName)
+      .mb-3
+        label.form-label(for='price') Giá
+        input#price.form-control.form-control-sm(name='price', value=book.price)
+      .mb-3
+        label.form-label(for='image') Hình ảnh
+        input#image.form-control.form-control-sm(name='image', value=book.image)
+      button(type='submit').btn.btn-primary.mb-3 Gửi
+    div.col-sm-3
+
+
+include ../components/footer.pug
+include ../components/jsscript.pug

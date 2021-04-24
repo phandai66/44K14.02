@@ -1,0 +1,30 @@
+include head.pug
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  .container
+    a.navbar-brand(href='/') Trang chủ
+    button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item
+          a.nav-link.active(aria-current='page', href='/cart') Giỏ hàng
+        li.nav-item
+          a.nav-link.active(aria-current='page', href='/history-buy') Lịch sử mua hàng
+        li.nav-item
+          a.nav-link.active(aria-current='page', href='/history-sold') Lịch sử bán hàng
+        li.nav-item
+          a.nav-link.active(aria-current='page', href='/order-pay') Quản lý đơn hàng
+        li.nav-item
+          a.nav-link.active(aria-current='page', href='/book-sell-by-user') Bán sách
+      form(action='/searchByName', method='get', style='margin-right : 0.5rem' ).d-flex
+        input.form-control.me-2(type='search', placeholder='Tìm kiếm', aria-label='Search', name='name')
+        button.btn.btn-outline-success(type='submit') Search
+      ul.navbar-nav
+      -if (username != null)
+        li.nav-item.d-flex
+          a(href='/logout').nav-link.active
+              i.fa.fa-sign-out-alt
+      -else
+          li.nav-item.d-flex
+            a(href='/login').nav-link.active
+                i.fa.fa-user

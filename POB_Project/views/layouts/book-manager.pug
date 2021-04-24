@@ -1,0 +1,25 @@
+include ../components/navbarAdmin.pug
+.container
+    div.table.row.align-middle.table-striped
+        table
+            thead
+                tr
+                    th.col-sm-4 Tên sách
+                    th.col-sm-2 Giá
+                    th.col-sm-2 Số lượng
+                    th.col-sm-3 Hình ảnh
+                    th.col-sm-1 Chỉnh sửa
+            if books != null
+                tbody
+                    each element in books
+                        tr
+                          td #{element.bookName}
+                          td #{element.price}
+                          td #{element.count}
+                          td
+                              -const img = element.image
+                              image(src=img, style='width:100px; height:100px')
+                          td
+                              -const url = '/book-manager-details?id=' + element.id
+                              a(href=url) chỉnh sửa
+

@@ -1,0 +1,29 @@
+include ../components/navbar.pug
+.container
+
+    div.row
+        div.col-sm-1
+        div.col-sm-10
+            h1 Danh sách đơn hàng
+        div.col-sm-1
+
+    div.table.row.table-borderless
+        div.col-sm-1
+        table.col-sm-10
+            thead
+                tr
+                    th(scope='col') #
+                    th(scope='col') Mã đơn hàng
+                    th(scope='col') Chi tiết
+            -let stt = 1
+            if orders
+                tbody
+                    each order in orders
+                        tr
+                            td #{stt}
+                            td #{order.id}
+                            td
+                                -const url = '/history-buy-detail?id=' + order.id
+                                a(href=url) Xem
+                        -stt++
+        div.col-sm-1

@@ -1,0 +1,33 @@
+include ../components/head.pug
+block append head 
+  title Lịch sử mua hàng
+include ../components/header.pug
+include ../components/navbar.pug
+.h Lịch sử mua hàng
+hr.ngang
+.giohang(style="padding-left: 0px;")
+  .container(style="display: flex; justify-content: center;")
+    .thongtin(style="display: flex; justify-content: center; padding: 20px 0px;")
+      table.table
+        thead
+          tr.table-title
+            th(scope='col') #
+            th(scope='col') Mã đơn hàng
+            th(scope='col') Chi tiết
+        -let stt = 1
+          tbody
+            if orders
+              each order in orders
+                tr
+                  td #{stt}
+                  td #{order.id}
+                  td
+                    -const url = '/history-buy-detail?id=' + order.id
+                    a(href=url) Xem
+                  -stt++
+            else
+                tr
+                  td(colspan="3") Lịch sử trống
+
+include ../components/footer.pug
+include ../components/jsscript.pug

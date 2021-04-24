@@ -1,0 +1,47 @@
+include ../components/head.pug
+block append head 
+  title Sách
+include ../components/header.pug
+include ../components/navbar.pug
+
+.h Danh M&#x1EE5;c S&#x1EA3;n Ph&#x1EA9;m
+hr.ngang
+.content
+  // DANH MỤC
+  .container.main
+    if books
+      each book in books 
+        .khoi
+          .hinh
+            img.layer1(src=`${book.image}`, alt='')
+            img.layer2(src=`${book.image}`, alt='')
+            .layer3
+              i.far.fa-heart(style='color: #FF8C00;')
+              i.fas.fa-compress-arrows-alt(style='color: #FF8C00;')
+              i.fas.fa-search-plus(style='color: #FF8C00;')
+          .tieude2(style="font-size: 24px; font-family: Garamond, Baskerville, Caslon, serif;") 
+            a(href=`/searchById?id=${book.id}`, style="text-decoration: none;")= book.bookName
+          .duoi
+            .trai
+              .lop1(style="font-size: 18px; font-family: Josefin Sans;") #{book.price}đ
+              .lop2
+                i.fas.fa-shopping-cart
+                |    Best Seller
+            .phai
+              if book.soluong
+                .soluong &Dstrok;&atilde; b&aacute;n: 12
+              .icon-cart
+                a(href=`/add/${book.id}`)
+                  i.fas.fa-cart-plus
+  .container
+    .position-relative
+      nav(aria-label='Page navigation example')
+        ul.pagination.centerul
+          if pages
+            each page in pages
+              li.page-item
+                a.page-link(href=`/index?page=${page}`)= page
+    // END DANH MỤC
+  // footer
+  include ../components/footer.pug
+include ../components/jsscript.pug

@@ -1,0 +1,36 @@
+include ../components/head.pug
+block append head 
+  title Quản lý kho sách
+include ../components/header.pug
+include ../components/navbarAdmin.pug
+
+.h Quản lý kho sách
+hr.ngang
+.giohang(style="padding-left: 0px;")
+  .container(style="display: flex; justify-content: center;")
+    .thongtin(style="display: flex; justify-content: center; padding: 20px 0px; width: 80%")
+      table.table
+        thead
+          tr.table-title
+            th(scope='col') Tên sách
+            th(scope='col') Giá
+            th(scope='col') Số lượng
+            th(scope='col') Hình ảnh
+            th(scope='col') Chỉnh sửa
+        
+        tbody
+          if books != null          
+            each element in books
+              tr
+                td #{element.bookName}
+                td #{element.price}
+                td #{element.count}
+                td
+                  -const img = element.image
+                  image(src=img, style='width:100px; height:100px')
+                td
+                  -const url = '/book-manager-details?id=' + element.id
+                  a(href=url) chỉnh sửa
+
+include ../components/footer.pug
+include ../components/jsscript.pug

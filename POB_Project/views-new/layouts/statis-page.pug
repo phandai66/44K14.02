@@ -1,0 +1,55 @@
+include ../components/head.pug
+block append head 
+  title Quản lý đơn hàng đang trong trạng thái chờ
+include ../components/header.pug
+include ../components/navbarAdmin.pug
+
+.h Thống kê
+hr.ngang
+.container
+  div.row
+    div.col-sm-4
+    div.col-sm-4
+      if messages
+        each message in messages
+          .alert.alert-danger= message
+    div.col-sm-4
+  div.row.mt-3.mb-5
+    div.col-sm-3
+    form.form-horizontal.col-sm-6(action='/statis', method='GET')    
+      span(style='width:500px') Format (Ngày: yy-mm-dd, tháng: yy-mm, năm: yy)
+      .mb-3(style="display:flex; flex-direction: row; justify-content: stretch")
+        input#value.form-control(type='text', name='value', required=true)
+        select#type.form-select(name='type')
+          option(value='day') Ngày
+          option(value='month') Tháng
+          option(value='year') Năm
+        input.btn.btn-primary(type='submit')
+    div.col-sm-3
+  
+.giohang(style="padding-left: 0px;")
+  .container(style="display: flex; justify-content: center;")
+    .thongtin(style="display: flex; justify-content: center; padding: 20px 0px;")
+      table.table
+        colgroup
+          col(width='60%', span='1')
+          col(width='20%', span='1')
+          col(width='20%', span='1')
+        thead
+          tr.table-title
+            th(scope='col') Tên sách
+            th(scope='col') Số lượng
+            th(scope='col') Tổng tiền
+        tbody
+          if array.length > 0
+            each element in array
+              tr
+                td.col-sm-3 #{element[1].name}
+                td.col-sm-3 #{element[1].total}
+                td.col-sm-3 #{element[1].totalPrice}
+          else
+            tr
+              td(colspan="3") Không có
+
+include ../components/footer.pug
+include ../components/jsscript.pug

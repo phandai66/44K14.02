@@ -1,0 +1,523 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+/*
+
+-- Index overview --
+--------------------
+0. General
+1. Header
+2. Navbar
+3. Carousel
+4. Icon
+5. Content
+6. Category
+7. Footer
+8. Basket
+
+*/
+
+
+/* 0. General start */
+.h{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color:black;
+    letter-spacing: 2px;
+    /* text-shadow: 4px 4px 0px #d5d5d5, 7px 7px 0px rgba(0, 0, 0, 0.2); */
+    height: 100px;
+    padding-top: 30px;
+}
+hr.ngang{
+    border-top: 4px solid #e84e4e;
+    width: 75px;
+    margin-left: 47%;
+    margin-top: -16px;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.centerul {
+    display: flex;
+    justify-content: center;
+}
+table thead tr th {
+    text-align: center;
+    vertical-align: middle;
+}
+table tbody tr th {
+    text-align: center;
+    vertical-align: middle;
+}
+table tbody tr td {
+    text-align: center;
+    vertical-align: middle;
+}
+.table td {
+    vertical-align: middle;
+}
+p {
+    padding: 5px 0px;
+    margin: 0px;
+}
+/* 0. General end */
+
+
+/* 1. Header start */
+.header {
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
+}
+.header .logo {
+    text-decoration: none;
+}
+/* tìm kiếm */
+.input-group-text{
+    background: #e84e4e;
+}
+.input-group-text i{
+    color: #fff;
+}
+.search button i{
+    text-align: center;
+    font-size: 18px;
+    padding-right: 7px;
+    color: whitesmoke;
+}
+.search:hover input[type=text]{
+    opacity: 1;
+}
+.search button:hover {
+    background: transparent;
+}
+/* end tìm kiếm */
+
+.header .search{
+    display: flex;
+    align-items: center;
+    float:left;
+    width: 30%;
+    height: 80px;
+}
+.header input[type=text]{
+    padding: 6px;
+    font-size: 17px;
+    border: none ;
+    width: 200px;
+    border: solid 1px rgb(235, 233, 233);
+    background: #ebebeb;
+    height: 48px;
+}
+.header .search .search-form {
+    margin: auto 0px;
+}
+.header .search button{
+    text-align: right;
+    padding: 6px 10px;
+    margin-right: 16px;
+    background: #ddd;
+    cursor: pointer;
+    border: none;
+    background: #e84e4e;
+    color: white;
+    height:48px;
+    width: 48px;
+}
+.header .search button i{
+    text-align: center;
+    font-size: 15px;
+    padding-right: 7px;
+}
+.header .search button:hover{
+    background: #ccc;
+}
+
+.header .header_icon{
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    /* width: 340px; */
+    height: 80px; 
+} 
+.header .header_icon ul {
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    list-style: none;
+    margin: 0px;
+    padding: 6px;
+}
+.header .header_icon ul li {
+    display: inline-block;
+    margin-right: 20px; 
+    font-size: 25px;
+}
+.header .header_icon ul li .info-icon{
+    color: rgb(121, 120, 120);
+
+}
+/* 1. Header end */
+
+
+/* 2. Navbar start */
+.menu{
+    width: 100%;
+}
+.menu .menutop{
+    margin: 0px auto;
+}
+.menu .menutop ul {
+    margin: 0px auto;
+}
+.menu .menutop ul li {
+    padding: 0px 16px;
+    font-size: 1em;
+    font-weight: bold;
+}
+.menu .menutop ul li a:hover {
+    color: black !important;
+}
+/* 2. Navbar end */
+
+/* 3. Carousel start */
+.carousel-size {
+    max-width: 100%;
+    max-height: 60%;
+}
+/* 3. Carousel end */
+
+/* 4. Icon start */
+.icon{
+    background-color: white !important;
+}
+.ic {
+    border: none !important;
+    background-color:white !important;
+    visibility: visible;
+    line-height: normal;
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+    font-size: 18px;
+}
+.ic img {
+    height: 45px;
+    width: 45px;
+    margin-left: 105px;
+    margin-top: 30px; 
+}
+.mota {
+    text-align: center !important;
+}
+.tieude1 {
+    font-size: 15px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.chitiet {
+    padding-top: 20px;
+}
+.mota a {
+    color: black;
+    border-bottom: 2px solid #999999;
+    padding-bottom: 4px;
+}
+.mota a:hover {
+    text-decoration: none;
+    color: gray;
+}
+/* 4. Icon end */
+
+/* 5. Content start */
+.noidung {
+
+}
+.home{
+    padding-top: 60px;
+    background-image: url(../images/bg-img-1_1920X.jpg);
+    background-size: 100%;
+    height: 500px;
+}
+/* 5. Content end */
+
+/* 6. Category start */
+.main {
+    padding: 0px 23px;
+    margin: 20px auto;
+}
+.main::after {
+    content: "";
+    clear: both;
+}
+.khoi {
+    width: 243px;
+    float: left;
+    margin: 20px 15px;
+}
+.hinh {
+    width: 243px;
+    height: 270px;
+    position: relative;
+}
+.hinh .layer1 {
+    width: 243px;
+    height: 270px;
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    left: 0px;
+}
+.hinh .layer2 {
+    width: 243px;
+    height: 270px;
+    position: absolute;
+    z-index: 2;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    transition: 0..4s;
+}
+.hinh .layer3 {
+    position: absolute;
+    z-index: 3;
+    top: 5px;
+    right: 3px;
+    width: 30px;
+    opacity: 0;
+    transition: 0.4s;
+}
+.layer3 i {
+    font-size: 20px;
+    padding-bottom: 7px;
+}
+.hinh:hover .layer2 {
+    opacity: 1;
+    transition: 0.5s;
+}
+.hinh:hover .layer3 {
+    opacity: 1;
+    transition: 0.5s;
+}
+.tieude2 {
+    margin-top: 10px;
+    font-size: 16px;
+    border-bottom: 1px solid gainsboro;
+    display: inline-block; /*tách rời khối riêng, nằm trên 1 dòng*/
+    font-weight: bold;
+    color:black;
+    letter-spacing: 2px;
+}
+.duoi .trai {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 150px;
+    height: 40px;
+    font-family: tahoma;
+    margin-top: 10px;
+    float: left;
+}
+.trai .lop1 {
+    position: absolute;
+    left: 0px;
+    z-index: 2;
+    color: #d14031;;
+    font-size: 20px;
+    transition: 0.4s;
+}
+.trai .lop2 {
+    position: absolute;
+    left: 0px;
+    z-index: 2;
+    color: black;
+    font-size: 13px;
+    opacity: 0;
+    transition: 0.4s;
+}
+.trai:hover .lop1 {
+    top: -10px;
+    transition: 0.4s;
+    opacity: 0;
+}
+.trai:hover .lop2 {
+    top: 0px;
+    transition: 0.4s;
+    opacity: 1;
+}
+.duoi .phai {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    float: right;
+    margin-top: 10px;
+    width: 93px;
+    height: 40px;
+}
+.phai .soluong{
+float: right;
+    display: block;
+    margin-right: 10px;
+    font-size: 14px;
+    color: rgba(128, 128, 128, 0.692);
+}
+.phai .icon-cart{
+    float: right;
+    font-size: 20px;
+}
+/* 6. Category end */
+
+/* 7. Footer start */
+.footer {
+    background: url(../images/footer.jpg);
+    color: #ffffff;
+    background-size: 100%;
+    height: auto;
+    display: flex;
+}
+.footer .tieude {
+    margin-top: 10px;
+}
+.footer .tieude a {
+    position: absolute;
+    text-decoration: none;
+    color: #ffffff;;
+    top: 46%;
+}
+.footer .tieude ul li {
+    list-style: none;
+}
+.footer .slogan {
+    margin-left: 30px;
+    margin-top: 10px;
+}
+.footer h2 {
+    margin-left: 46%;
+}
+/* 7. Footer end */
+
+/* 8. Basket start */
+.giohang{
+    width: 100%;
+    display: flex;
+    height: auto;
+    background-color: #fdefe1;
+    padding-left:80px;
+}
+
+.giohang .thongtin{
+    width: 67%;
+    padding-top: 50px;
+    padding-left: 47px;
+}
+.giohang .muahang{
+    width: 23%;
+}
+.muahang .thanhtien{
+    padding-top: 50px;
+    padding-left: 60px;
+}
+.tongtien{
+    padding-left: 10px;
+    font-size: 20px;
+    font-style: bold;
+    color: #e84e4e;
+}
+.muahang .wrap-btn{
+    padding-top: 38px;
+    padding-left: 60px;
+}
+.muahang .wrap-btn .btn-mua{
+    text-decoration: none;
+}
+.table-bordered {
+    border: 1px solid #ddd;
+}
+table {
+    margin: auto 10px;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+table {
+    background-color: transparent;
+    display: table;
+    border-collapse: collapse;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: grey;
+}
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+.table-title {
+    background-color: #d14031;
+    color: white;
+    border: none;
+    font-family: 'Bai Jamjuree', sans-serif;
+    width: 1000px;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+th,td{
+    border-top: none;
+    border-bottom-width: 2px;
+    border:1px solid #ddd;
+    vertical-align: bottom;
+    padding: 4px;
+    line-height: 2;
+    font-weight: 100px;
+    text-align: left;
+    display: table-cell;
+    position: relative;
+}
+.btn-xoa{
+    bottom:25%;
+    background-color: transparent;
+    border:#ddd;
+    width: 38px;
+    height: 35px;
+    color: rgb(247, 38, 38);
+}
+/* input[type='number'] {
+	margin-right: 7px;
+	line-height: 12px;
+    font-size: 15px;
+    border: white;
+    width: 30px;
+    height: 30px;
+    background-color: #fdefe1;
+} */
+.btn-mua{
+    color: rgba(255, 255, 255, 0.938);
+    background: #e84e4e;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 12px 25px;
+    /* margin-top: 50px; */
+    /* margin-left: 355px; */
+    border: none;
+}
+.btn-mua:hover{
+    background:white;
+    border: 1px solid #e84e4e;
+    color: #e84e4e;
+    font-weight: normal;
+}
+.btnn {
+    background-color: #d14031;
+}
+.btn-primary:hover {
+    background-color: #007bff;
+}
+/* 8. Basket end */

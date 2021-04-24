@@ -1,0 +1,43 @@
+include ../components/head.pug
+block append head 
+  title Quản lý đơn đặt hàng
+include ../components/header.pug
+include ../components/navbarAdmin.pug
+
+.h Quản lý đơn đặt hàng
+hr.ngang
+.giohang(style="padding-left: 0px;")
+  .container(style="display: flex; justify-content: center;")
+    .thongtin(style="display: flex; justify-content: center; padding: 20px 0px;")
+      table.table
+        thead
+          tr.table-title
+            th(scope='col') #
+            th(scope='col') Buyer
+            th(scope='col') Book name
+            th(scope='col') Quantity
+            th(scope='col') Total
+            th(scope='col') Utilities
+        tbody
+          if orders 
+            each order in orders
+              tr
+                td= order.stt
+                td= order.buyer
+                td(style="display: flex; flex-direction: column; justify-content: center;")
+                  each book in order.bookName
+                    p #{book}
+                td
+                  each qtt in order.quantity
+                    p #{qtt}
+                td= order.total 
+                td(style="padding: auto 0px;")
+                  span(style="padding-right: 25px;")
+                    a(href=`/accept-order/${order.orderId}`)
+                      i(style="font-size: 1.5rem;").fas.fa-check
+                  span
+                    a(href=`/reject-order/${order.orderId}`)
+                      i(style="font-size: 1.5rem;").fas.fa-times
+
+include ../components/footer.pug
+include ../components/jsscript.pug

@@ -1,0 +1,27 @@
+include ../components/navbar.pug
+.container
+    div.row
+        div.col-sm-1
+        div.col-sm-10
+            h1 Lịch sử bán
+        div.col-sm-1
+
+    div.table.row.table-borderless
+        div.col-sm-1
+        table.col-sm-10
+            thead
+                tr
+                    th(scope='col') #
+                    th(scope='col') Mã Giao dịch
+                    th(scope='col') Chi tiết
+            -let stt = 1
+            if booksold
+                tbody
+                    each sell in booksold
+                        tr
+                            td #{stt}
+                            td #{sell.id}
+                            td
+                                -const url = '/history-sold-detail?id=' + sell.id
+                                a(href=url) Xem
+                        -stt++

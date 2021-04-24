@@ -1,0 +1,27 @@
+include ../components/head.pug
+block append head 
+  title Bán sách
+include ../components/header.pug
+include ../components/navbar.pug
+
+.h Bán sách
+hr.ngang
+.container
+  div.row.mt-3.mb-5
+    div.col-sm-4
+    form.form-horizontal.col-sm-4(action='/book-sell-by-user', method='POST')
+      if books
+        .form-group.row-4
+          label.form-label(for='bookId') Chọn sách để bán:
+          br
+          select#bookId.form-control(name='bookId')
+            each book in books
+              option(value=book.id) #{book.bookName}
+        .form-group.row-4
+          label.form-label(for='count') Số lượng
+          input#count.form-control.row-4(type='number', name='count')
+        input.btn.btn-primary(type='submit', title='Gửi')
+    div.col-sm-4
+
+include ../components/footer.pug
+include ../components/jsscript.pug

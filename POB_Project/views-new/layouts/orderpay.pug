@@ -1,0 +1,45 @@
+include ../components/head.pug
+block append head 
+  title Quản lý đơn hàng đang trong trạng thái chờ
+include ../components/header.pug
+include ../components/navbar.pug
+.h Quản lý đơn hàng đã đặt
+hr.ngang
+.giohang(style="padding-left: 0px;")
+  .container(style="display: flex; justify-content: center;")
+    .thongtin(style="display: flex; justify-content: center; padding: 20px 0px;")
+      table.table
+        colgroup
+          col(width='10%', span='1')
+          col(width='40%', span='1')
+          col(width='15%', span='1')
+          col(width='20%', span='1')
+          col(width='15%', span='1')
+        thead
+          tr.table-title
+            th(scope='col') #
+            th(scope='col') Tên sách
+            th(scope='col') Số lượng
+            th(scope='col') Tổng
+            th(scope='col') Tiện ích
+        tbody
+          if orders.length > 0
+            each order in orders
+              tr
+                td= order.stt
+                td(style="display: flex; flex-direction: column; justify-content: center;")
+                  each book in order.bookName
+                    p #{book}
+                td
+                  each qtt in order.quantity
+                    p #{qtt}
+                td= order.total
+                td
+                  a(href=`/cancel/${order.orderID}`)
+                    i(style="font-size: 1.5rem;").fas.fa-trash-alt
+          else
+              tr
+                td(colspan="5") Hiện không có đơn đặt hàng nào trong trạng thái chờ
+
+include ../components/footer.pug
+include ../components/jsscript.pug

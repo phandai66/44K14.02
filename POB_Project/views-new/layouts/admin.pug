@@ -1,0 +1,73 @@
+include ../components/head.pug
+block append head 
+  title Admin Dashboard
+include ../components/header.pug
+include ../components/navbarAdmin.pug
+// Carousel
+#carouselExampleIndicators.carousel.slide.carousel-size(data-ride='carousel')
+  ol.carousel-indicators
+    li.active(data-target='#carouselExampleIndicators', data-slide-to='0')
+    li(data-target='#carouselExampleIndicators', data-slide-to='1')
+    li(data-target='#carouselExampleIndicators', data-slide-to='2')
+  .carousel-inner
+    .carousel-item.active
+      img.d-block.w-100(style='width: 100%; height: 60%;', src='static/images/chicago.jpg', alt='book1')
+      .carousel-caption.d-none.d-md-block
+        h5 Automatic
+        p With this we can relax
+    .carousel-item
+      img.d-block.w-100(style='width: 100%; height: 60%;', src='static/images/la.jpg', alt='book2')
+      .carousel-caption.d-none.d-md-block
+        h5 Automatic
+        p With this we can relax
+    .carousel-item
+      img.d-block.w-100(style='width: 100%; height: 60%;', src='static/images/ny.jpg', alt='book3')
+      .carousel-caption.d-none.d-md-block
+        h5 Automatic
+        p With this we can relax
+  a.carousel-control-prev(href='#carouselExampleIndicators', role='button', data-slide='prev')
+    span.carousel-control-prev-icon(aria-hidden='true')
+    span.sr-only Previous
+  a.carousel-control-next(href='#carouselExampleIndicators', role='button', data-slide='next')
+    span.carousel-control-next-icon(aria-hidden='true')
+    span.sr-only Next
+// Carousel end
+// icon
+.container
+  .card-deck.icon
+    .card.ic
+      img.card-img-top(src='/static/images/icon-1.png', alt='')
+      .card-body.mota
+        h4.card-title.tieude1 FREE SHIPPING
+        p.card-text.chitiet Th&ocirc;ng tin chi ti&#x1EBF;t v&agrave; b&#x1EA3;ng gi&aacute; c&#x1EE7;a d&#x1ECB;ch v&#x1EE5; s&#x1EED;a ch&#x1EEF;a
+        a(href='') XEM CHI TI&#x1EBE;T
+    .card.ic
+      img.card-img-top(src='/static/images/icon-2.png', alt='')
+      .card-body.mota
+        h4.card-title.tieude1 SECURE PAYMENT
+        p.card-text.chitiet Th&ocirc;ng tin chi ti&#x1EBF;t v&#x1EC1; ch&#x1EBF; &dstrok;&#x1ED9; b&#x1EA3;o h&agrave;nh c&#x1EE7;a Mazda
+        a(href='') XEM CHI TI&#x1EBE;T
+    .card.ic
+      img.card-img-top(src='/static/images/icon-3.png', alt='')
+      .card-body.mota
+        h4.card-title.tieude1 BEST PRICE
+        p.card-text.chitiet L&#x1ECB;ch b&#x1EA3;o d&#x1B0;&#x1EE1;ng &dstrok;&#x1ECB;nh k&#x1EF3; chi ti&#x1EBF;t sau khi nh&#x1EAD;n xe
+        a(href='') XEM CHI TI&#x1EBE;T
+    .card.ic
+      img.card-img-top(src='/static/images/icon-4.png', alt='')
+      .card-body.mota
+        h4.card-title.tieude1 FREE RETURNS
+        p.card-text.chitiet Gi&aacute; chi ti&#x1EBF;t c&#x1EE7;a c&aacute;c ph&#x1EE5; t&ugrave;ng, ph&#x1EE5; ki&#x1EC7;n thay th&#x1EBF;
+        a(href='') XEM CHI TI&#x1EBE;T
+// end icon
+.h PH&#x1ED4; BI&#x1EBE;N
+hr.ngang
+// Nội dung
+.noidung
+  .home
+    .container
+      .text-center
+        h1 Book Festival
+// end nội dung
+include ../components/footer.pug
+include ../components/jsscript.pug

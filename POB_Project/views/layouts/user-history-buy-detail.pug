@@ -1,0 +1,42 @@
+include ../components/navbar.pug
+.container
+
+    div.row
+        div.col-sm-1
+        div.col-sm-10
+            h1 Thông tin chi tiết
+        div.col-sm-1
+
+    div.table.row.table-borderless
+        div.col-sm-1
+
+        table.col-sm-10
+            thead
+                tr
+                    th(scope='col') #
+                    th(scope='col') Tên sách
+                    th(scope='col') Số lượng
+                    th(scope='col') Đơn giá
+                    th(scope='col') Thành tiền
+
+            if data.array
+                -let stt = 1
+                tbody
+                    -let total = 0
+                    each item in data.array
+                        tr
+                            td #{stt}
+                            td  #{item.name}
+                            td  #{item.count}
+                            td  #{item.price}
+                            -const sum = parseInt(item.price) * parseInt(item.count)
+                            -total += sum
+                            td  #{sum}
+                        -stt++
+                    tr
+                        td
+                        td
+                        td
+                        th Trạng thái: #{data.status}
+                        th Tổng: #{total}
+        div.col-sm-1

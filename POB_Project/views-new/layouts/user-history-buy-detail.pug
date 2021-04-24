@@ -1,0 +1,42 @@
+include ../components/head.pug
+block append head 
+  title Chi tiết đơn đặt hàng
+include ../components/header.pug
+include ../components/navbar.pug
+
+.h Chi tiết đơn đặt hàng
+hr.ngang
+.giohang(style="padding-left: 0px;")
+  .container(style="display: flex; justify-content: center;")
+    .thongtin(style="display: flex; justify-content: center; padding: 20px 0px;")
+      table.table
+        thead
+          tr.table-title
+            th(scope='col') #
+            th(scope='col') Tên sách
+            th(scope='col') Số lượng
+            th(scope='col') Đơn giá
+            th(scope='col') Thành tiền
+        if data.array
+          -let stt = 1
+          tbody
+            -let total = 0
+            each item in data.array
+              tr
+                td #{stt}
+                td  #{item.name}
+                td  #{item.count}
+                td  #{item.price}
+                -const sum = parseInt(item.price) * parseInt(item.count)
+                -total += sum
+                td  #{sum}
+              -stt++
+            tr
+              td(style="border: 0;")
+              td(style="border: 0;")
+              td(style="border: 0;")
+              th(style="border: 0;") Trạng thái: #{data.status}
+              th(style="border: 0;") Tổng: #{total}
+
+include ../components/footer.pug
+include ../components/jsscript.pug
