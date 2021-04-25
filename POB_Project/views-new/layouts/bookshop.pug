@@ -4,7 +4,7 @@ block append head
 include ../components/header.pug
 include ../components/navbar.pug
 
-.h Danh M&#x1EE5;c S&#x1EA3;n Ph&#x1EA9;m
+.h Danh Mục Sản Phẩm
 hr.ngang
 .content
   // DANH MỤC
@@ -14,11 +14,11 @@ hr.ngang
         .khoi
           .hinh
             img.layer1(src=`${book.image}`, alt='')
-            img.layer2(src=`${book.image}`, alt='')
+            .layer2
             .layer3
-              i.far.fa-heart(style='color: #FF8C00;')
-              i.fas.fa-compress-arrows-alt(style='color: #FF8C00;')
-              i.fas.fa-search-plus(style='color: #FF8C00;')
+             i.fas.fa-shopping-cart(style='background-color: #d14031; border-radius: 50%; width: 22px; height: 22px;')
+             i.far.fa-heart(style='background-color: #d14031; border-radius: 50%; width: 22px; height: 22px;')
+             i.far.fa-eye(style='background-color: #d14031; border-radius: 50%; width: 22px; height: 22px;')
           .tieude2(style="font-size: 24px; font-family: Garamond, Baskerville, Caslon, serif;") 
             a(href=`/searchById?id=${book.id}`, style="text-decoration: none;")= book.bookName
           .duoi
@@ -30,9 +30,7 @@ hr.ngang
             .phai
               if book.soluong
                 .soluong &Dstrok;&atilde; b&aacute;n: 12
-              .icon-cart
-                a(href=`/add/${book.id}`)
-                  i.fas.fa-cart-plus
+            a.btn.btn-primary(href=`/add/${book.id}`) Thêm vào giỏ hàng
   .container
     .position-relative
       nav(aria-label='Page navigation example')
