@@ -35,7 +35,7 @@ module.exports.postBookshell = async (req, res) => {
 //load vào trang sách phê duyệt để tăng số lượng trong db
 module.exports.getIncreaseBookBD = async (req, res) => {
     const acc = await Currentuser.getCurrentUser(req, res)
-    const bookshell = await Bookshell.find({ status : false})
+    const bookshell = await Bookshell.find({ status : false })
     // console.log(bookshell)
     res.render('layouts/book-update-from-bookshell', { bookshell : bookshell, username : acc})
 }
@@ -57,4 +57,12 @@ module.exports.postIncreaseBookBD = async (req, res) => {
 
     //TODO redirect dummy here
     res.redirect('/admin')
+}
+
+module.exports.deleteBookSellById = async (req, res) => {
+    const id = req.params.id
+    const bookshell = await Bookshell.findById(id)
+    await Bookshell.findOneAndDelete({ _id: bookshell._id })
+    res.redirect('/book-accept')
+    return;
 }

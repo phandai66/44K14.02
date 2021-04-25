@@ -22,13 +22,15 @@ hr.ngang
                 form(action='/book-accept', method='POST')
                   input(name='bookId', value=book.bookId, hidden)
                   input(name='id', value=book.id, hidden)
-                  th.col-sm-3
+                  th
                     p #{book.bookName}
                   input(name='count', value=book.count, hidden)
-                  th.col-sm-3
+                  th
                     p #{book.count}
-                  th.col-sm-1
+                  th(style="display: flex; flex-direction: row; justify-content: center;")
                     input.btn.btn-primary(type='submit', value="Nhập hàng") 
+                    a(href=`/delete-book-sell/${book.id}`, style="display: flex; flex-direction: row; align-items: center; justify-content: center; padding-left: 10px;")
+                      i(style="font-size: 1.5rem;").fas.fa-trash-alt
 
 include ../components/footer.pug
 include ../components/jsscript.pug
