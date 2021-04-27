@@ -292,12 +292,11 @@ p {
     clear: both;
 }
 .khoi {
-    background-color: white;
-    width: 245px;
+    width: 243px;
     float: left;
     margin: 20px 15px;
     padding: 16px 16px;
-   
+    background-color: white;    
 }
 .hinh {
     width: 213px;
@@ -409,6 +408,7 @@ p {
     top: -10px;
     transition: 0.4s;
     opacity: 0;
+    margin-top: 12px;
 }
 .trai:hover .lop2 {
     top: 0px;
@@ -679,12 +679,22 @@ th,td{
 }
 .btnn {
     background-color: #d14031;
+    border:#d14031;
 }
 .btn-primary:hover {
-    background-color: #007bff;
+    background-color: #d14031;
+    color: black;
+    border: #d14031;
 }
 /* 8. Basket end */
 
 /* 9. Login start  */
 
 /* 9.Login end  */
+
+/* 10. book_form_new start */
+.row.mt-3.mb-5{
+    background-color: #fdefe1;
+   
+}
+/* 10. book_form_new end */
