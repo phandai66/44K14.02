@@ -1,0 +1,42 @@
+include ../components/head.pug
+block append head 
+  title Trang chủ
+include ../components/header.pug
+include ../components/navbar.pug
+.h Đăng nhập
+hr.ngang
+.container
+  div.row
+    div.col-sm-4
+    div.col-sm-4
+      if messages
+        each message in messages
+          .alert.alert-danger= message
+    div.col-sm-4
+  div.row.mt-3.mb-5
+    div.col-sm-4
+    form.form-horizontal.col-sm-4(action='/register', method='POST')
+      if fromUrl
+        input.form-control(type='text', name='fromUrl', value=`${fromUrl}`, hidden=true)
+      .mb-3.mt-2
+        label.form-label(for='username') Tên đăng nhập
+        input#username.form-control(type='text', name='username')
+      .mb-3
+        label.form-label(for='password') Mật khẩu
+        input#password.form-control(type='password', name='password')
+      .mb-3
+        label.form-label(for='name') Name
+        input#name.form-control(type='text', name='name')
+      .mb-3
+        label.form-label(for='phone') Phone
+        input#phone.form-control(type='text', name='phone')
+      .mb-3
+        label.form-label(for='classs') Class
+        input#classs.form-control(type='text', name='classs')
+      button.btn.btn-primary.btnn(type='submit', value='Register') Đăng ký
+      button.btn.btn-primary.btnn(type='button', value='Login', style='float : right;')
+        a(href='/login' style='text-decoration:none; color: white;') Có tài khoản rồi ?
+    div.col-sm-4
+
+include ../components/footer.pug
+include ../components/jsscript.pug

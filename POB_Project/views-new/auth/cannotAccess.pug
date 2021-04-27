@@ -1,10 +1,25 @@
-include ../components/head.pug
-block append head 
-  title Permission Denied
-include ../components/header.pug
-include ../components/navbar.pug
-
-h1 Không có quyền truy cập
-
-include ../components/footer.pug
-include ../components/jsscript.pug
+if (!basket) {
+        const bookArr = [id];
+        const countArr = [1];
+        // TODO: need to add date
+        const newBasket = new Basket({ userID: account.id, bookID: bookArr, count: countArr, total: book.price, status: 'in basket', date : date() })
+        await newBasket.save()
+        res.redirect('/cart')
+    } else {
+        const index = basket.bookID.indexOf(id)
+        if (index == -1) {
+            basket.bookID.push(id)
+            basket.count.push(1)
+            basket.total = basket.total + book.price
+        } else {
+            let idx = basket.bookID.indexOf(id)
+            let itemCount = basket.count[basket.bookID.indexOf(id)]
+            basket.count[idx] = itemCount + 1
+            basket.total = basket.total + book.price
+        }
+        basket.status = 'in basket'
+        basket.date = date()
+        // TODO: need add date
+        await Basket.updateOne({ userID: account.id }, basket)
+        res.redirect('/cart')
+    }

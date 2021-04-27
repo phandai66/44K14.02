@@ -10,31 +10,52 @@ module.exports.insertIntoBasket = async (req, res) => {
     const account = await Account.findOne({ username })
     const book = await Book.findById(id)
     const basket = await Basket.findOne({ userID: account.id })
-
-    if (!basket) {
-        const bookArr = [id];
-        const countArr = [1];
-        // TODO: need to add date
-        const newBasket = new Basket({ userID: account.id, bookID: bookArr, count: countArr, total: book.price, status: 'in basket', date : date() })
-        await newBasket.save()
-        res.redirect('/cart')
-    } else {
-        const index = basket.bookID.indexOf(id)
-        if (index == -1) {
-            basket.bookID.push(id)
-            basket.count.push(1)
-            basket.total = basket.total + book.price
-        } else {
-            let idx = basket.bookID.indexOf(id)
-            let itemCount = basket.count[basket.bookID.indexOf(id)]
-            basket.count[idx] = itemCount + 1
-            basket.total = basket.total + book.price
+    if (book.count <= 0 || book.count <= basket.count[basket.bookID.indexOf(id)]) {
+        const messages = []
+        messages.push('Số lượng trong kho không đủ')
+        const baskets = []
+        if (!basket) {
+            res.render('layouts/basket', { username : acc })
+            return
         }
-        basket.status = 'in basket'
-        basket.date = date()
-        // TODO: need add date
-        await Basket.updateOne({ userID: account.id }, basket)
-        res.redirect('/cart')
+        const bookArr = basket.bookID
+        const countArr = basket.count
+        for (let i = 0; i < bookArr.length; i++) {
+            const book = await Book.findById(bookArr[i])
+            
+            baskets.push({ stt: i + 1, bookId: book.id, bookName: book.bookName, quantity: countArr[i], price: book.price  * countArr[i] })
+        }
+        if (bookArr.length == 0) {
+            basket.status = 'empty'
+        }
+        res.render('layouts/basket', { orders: baskets, status: basket.status, total: basket.total, orderID: basket.orderID, username : account.username, messages: messages })
+        return
+    } else {
+        if (!basket) {
+            const bookArr = [id];
+            const countArr = [1];
+            // TODO: need to add date
+            const newBasket = new Basket({ userID: account.id, bookID: bookArr, count: countArr, total: book.price, status: 'in basket', date : date() })
+            await newBasket.save()
+            res.redirect('/cart')
+        } else {
+            const index = basket.bookID.indexOf(id)
+            if (index == -1) {
+                basket.bookID.push(id)
+                basket.count.push(1)
+                basket.total = basket.total + book.price
+            } else {
+                let idx = basket.bookID.indexOf(id)
+                let itemCount = basket.count[basket.bookID.indexOf(id)]
+                basket.count[idx] = itemCount + 1
+                basket.total = basket.total + book.price
+            }
+            basket.status = 'in basket'
+            basket.date = date()
+            // TODO: need add date
+            await Basket.updateOne({ userID: account.id }, basket)
+            res.redirect('/cart')
+        }
     }
 }
 
@@ -87,7 +108,6 @@ module.exports.showBasket = async (req, res) => {
     const account = await Account.findOne({ username })
     const baskets = []
 
-
     const basket = await Basket.findOne({ userID: account.id })
 
     if (!basket) {
@@ -107,6 +127,7 @@ module.exports.showBasket = async (req, res) => {
         basket.status = 'empty'
     }
     res.render('layouts/basket', { orders: baskets, status: basket.status, total: basket.total, orderID: basket.orderID, username : acc })
+    return
 }
 
 module.exports.cancelOrder = async (req, res) => {

@@ -5,6 +5,13 @@ include ../components/header.pug
 include ../components/navbar.pug
 .h Giỏ hàng
 hr.ngang
+div.row
+  div.col-sm-4
+  div.col-sm-4
+    if messages
+      each message in messages
+        .alert.alert-danger= message
+  div.col-sm-4
 // Basket
 .giohang
   .thongtin

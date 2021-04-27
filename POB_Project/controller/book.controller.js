@@ -113,13 +113,13 @@ module.exports.getBookById = async (req, res) => {
         res.redirect('/index')
     } else {
         const book = await Book.findById(req.query.id)
-        const array = []
-        array.push(book)
+        // const array = []
+        // array.push(book)
         if (acc) {
-            res.render('layouts/bookshop', { books: array, username : acc.username })
+            res.render('layouts/book-detail', { book: book, username : acc.username })
             return
         } else {
-            res.render('layouts/bookshop', { books: array })
+            res.render('layouts/book-detail', { book: book })
             return
         }
     }
