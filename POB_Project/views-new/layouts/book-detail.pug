@@ -4,7 +4,35 @@ block append head
 include ../components/header.pug
 include ../components/navbar.pug
 
-p Chi tiết sản phẩm
+.h Chi tiết sản phẩm
+hr.ngang
+.container-fluid
+  div.row
+    div.col-md-2
+    div.col-md-4
+      img(src=book.image, alt='', width='80%', height="380px")
+    div.col-md-5
+      h1= book.bookName
+      h4(style='color:#d14031; font-size:35px;')= book.price
+      div.khoinho
+        label Vận chuyển
+        div.freeship 
+          img(src='static/images/freeship.png', alt='', width='25px', height='15px')
+          span Miễn phí vận chuyển
+        br
+        label Địa chỉ
+        div.motachitiet
+          i.fas.fa-map-marker-alt(style='color:#d14031; width:25px')
+          span Trường Đại học Kinh tế Đà Nẵng
+      .khoinho
+        label Số lượng
+        div.motachitiet
+          p= book.count
+      .khoinho
+        a.btn.btn-primary(href=`/add/${book.id}`) Thêm vào giỏ hàng
+      
+    .col-md-1
+
 
 include ../components/footer.pug
 include ../components/jsscript.pug

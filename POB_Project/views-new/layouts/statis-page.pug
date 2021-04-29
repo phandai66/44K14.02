@@ -27,14 +27,10 @@ hr.ngang
         input.btn.btn-primary(type='submit')
     div.col-sm-3
   
-.giohang(style="padding-left: 0px;")
+.giohang(style="padding-left: 0px;margin-top:-50px")
   .container(style="display: flex; justify-content: center;")
     .thongtin(style="display: flex; justify-content: center; padding: 20px 0px;")
       table.table
-        colgroup
-          col(width='60%', span='1')
-          col(width='20%', span='1')
-          col(width='20%', span='1')
         thead
           tr.table-title
             th(scope='col') Tên sách
@@ -44,9 +40,9 @@ hr.ngang
           if array.length > 0
             each element in array
               tr
-                td.col-sm-3 #{element[1].name}
-                td.col-sm-3 #{element[1].total}
-                td.col-sm-3 #{element[1].totalPrice}
+                td #{element[1].name}
+                td #{element[1].total}
+                td #{element[1].totalPrice}
           else
             tr
               td(colspan="3") Không có
