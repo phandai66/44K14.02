@@ -1,7 +1,7 @@
 include ../components/head.pug
 block append head 
   title Quản lý đơn đặt hàng
-include ../components/header.pug
+include ../components/headerAdmin.pug
 include ../components/navbarAdmin.pug
 
 .h Quản lý đơn đặt hàng
@@ -14,6 +14,7 @@ hr.ngang
           tr.table-title
             th(scope='col') #
             th(scope='col') Người Mua
+            th(scope='col') Số điện thoại
             th(scope='col') Tên Sách
             th(scope='col') Số Lượng
             th(scope='col') Tổng Cộng
@@ -24,6 +25,7 @@ hr.ngang
               tr
                 td= order.stt
                 td= order.buyer
+                td= order.phone
                 td(style="display: flex; flex-direction: column; justify-content: center;")
                   each book in order.bookName
                     p #{book}

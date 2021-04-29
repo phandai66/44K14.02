@@ -186,7 +186,7 @@ module.exports.showOrderManage = async (req, res) => {
             const book = await Book.findById(listOrders[i].bookID[j])
             books.push(book.bookName)
         }
-        orders.push({ stt: i + 1, orderId: listOrders[i].id, buyer: account.name, bookName: books, quantity: listOrders[i].count, total: listOrders[i].total })
+        orders.push({ stt: i + 1, orderId: listOrders[i].id, buyer: account.name, bookName: books, quantity: listOrders[i].count, total: listOrders[i].total, phone : account.phone })
     }
 
     res.render('layouts/acceptOrder', { orders : orders, username : acc.username })

@@ -15,7 +15,7 @@ module.exports.getStatis = async (req, res) => {
             const day = new Date(req.query.value);
 
             const result = new Map()
-            const orders = await Order.find({date : day})
+            const orders = await Order.find({date : day, status : 'accept'})
 
             //console.log(orders)
 
@@ -25,7 +25,7 @@ module.exports.getStatis = async (req, res) => {
 
         } else if (req.query.type === 'month') {
             const result = new Map()
-            const orders = await Order.find({})
+            const orders = await Order.find({status : 'accept'})
 
             const year = req.query.value.substring(0,4)
             let month = req.query.value[5]=='0' ? req.query.value[6] : req.query.value.substring(5,7)
@@ -47,7 +47,7 @@ module.exports.getStatis = async (req, res) => {
         } else if (req.query.type === 'year') {
 
             const result = new Map()
-            const orders = await Order.find({})
+            const orders = await Order.find({status : 'accept'})
 
             const list = []
             for (let i = 0; i < orders.length; i++) {

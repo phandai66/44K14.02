@@ -1,0 +1,39 @@
+include ../components/head.pug
+block append head 
+  title Sách
+include ../components/headerAdmin.pug
+include ../components/navbarAdmin.pug
+
+.h Danh Mục Sản Phẩm
+hr.ngang
+.content
+  // DANH MỤC
+  .container.main
+    if books
+      each book in books 
+        .khoi
+          .hinh
+            img.layer1(src=`${book.image}`, alt='')
+            .layer2
+            .layer3
+             i.fas.fa-shopping-cart(style='background-color: #d14031; border-radius: 50%; width: 22px; height: 22px;')
+             i.far.fa-heart(style='background-color: #d14031; border-radius: 50%; width: 22px; height: 22px;')
+             i.far.fa-eye(style='background-color: #d14031; border-radius: 50%; width: 22px; height: 22px;')
+          .tieude2(style="font-size: 24px; font-family: Garamond, Baskerville, Caslon, serif;") 
+            a(href=`/book-manager-details?id=${book.id}`, style="text-decoration: none;")= book.bookName
+            //- .phai
+              //- if book.soluong
+              //-   .soluong &Dstrok;&atilde; b&aacute;n: 12
+            a.btn.btn-primary(href=`/book-manager-details?id=${book.id}`) Chỉnh sửa 
+  .container
+    .position-relative
+      nav(aria-label='Page navigation example')
+        ul.pagination.centerul
+          if pages
+            each page in pages
+              li.page-item
+                a.page-link(href=`/index?page=${page}`)= page
+    // END DANH MỤC
+  // footer
+  include ../components/footer.pug
+include ../components/jsscript.pug

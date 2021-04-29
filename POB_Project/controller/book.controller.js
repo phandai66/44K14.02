@@ -146,3 +146,15 @@ module.exports.showMainPage = async (req, res) => {
     res.render('layouts/main', { username })
     return
 }
+
+module.exports.getBooksDetailsByName = async (req, res) => {
+    const { username } = req.user
+    const acc = await accountModel.findOne({ username })
+    if (req.query.name == '') {
+        res.redirect('/admin')
+    } else {
+        const books = await Book.find({bookName : {$regex: req.query.name, '$options' : 'i'}})
+        res.render('layouts/book-manager-details-by-name', { books : books,  username : acc.username })
+        return
+    }
+}
