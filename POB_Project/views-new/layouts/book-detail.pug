@@ -12,8 +12,8 @@ hr.ngang
     div.col-md-4
       img(src=book.image, alt='', width='80%', height="380px")
     div.col-md-5
-      h1= book.bookName
-      h4(style='color:#d14031; font-size:35px;')= book.price
+      p(style='color:#black; font-size:45px;')= book.bookName
+      p(style='color:#d14031; font-size:35px;')= book.price +'đ' 
       div.khoinho
         label Vận chuyển
         div.freeship 
@@ -22,12 +22,12 @@ hr.ngang
         br
         label Địa chỉ
         div.motachitiet
-          i.fas.fa-map-marker-alt(style='color:#d14031; width:25px')
+          i.fas.fa-map-marker-alt(style='color:#d14031; width:19px')
           span Trường Đại học Kinh tế Đà Nẵng
       .khoinho
         label Số lượng
         div.motachitiet
-          p= book.count
+          span(style='color:#d14031; font-size:20px;line-height:5px')= book.count
       .khoinho
         a.btn.btn-primary(href=`/add/${book.id}`) Thêm vào giỏ hàng
       
