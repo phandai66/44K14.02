@@ -558,6 +558,7 @@ p {
     height: auto;
     background-color: #fdefe1;
     padding-left:80px;
+    margin-bottom: 40px;
 }
 
 .giohang .thongtin{
@@ -715,6 +716,9 @@ th,td{
 .khoinho p{
     padding-left: 68px;
 
+}
+.khoinho a{
+    margin-top: 20px;
 }
 .row{
     margin: 0;
