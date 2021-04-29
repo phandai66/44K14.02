@@ -126,13 +126,17 @@ module.exports.getBookById = async (req, res) => {
 }
 
 module.exports.getBookByName = async (req, res) => {
-    const { username } = req.user
-    const acc = await accountModel.findOne({ username })
     if (req.query.name == undefined) {
         res.redirect('/index')
     } else {
-        const books = await Book.find({bookName : {$regex: req.query.name, '$options' : 'i'}})
-        res.render('layouts/bookshop', { books : books,  username : acc.username })
+        const books = await Book.find({ bookName: { $regex: req.query.name, '$options': 'i' } })
+        if (req.user) {
+            const { username } = req.user
+            const acc = await accountModel.findOne({ username })
+            res.render('layouts/bookshop', { books: books, username: acc.username })
+            return
+        }
+        res.render('layouts/bookshop', { books: books })
         return
     }
 }

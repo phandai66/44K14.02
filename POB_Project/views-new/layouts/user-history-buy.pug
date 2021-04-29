@@ -13,6 +13,7 @@ hr.ngang
           tr.table-title
             th(scope='col') STT
             th(scope='col') Mã đơn hàng
+            th(scope='col') Ngày mua
             th(scope='col') Chi tiết
         -let stt = 1
           tbody
@@ -21,6 +22,7 @@ hr.ngang
                 tr
                   td #{stt}
                   td #{order.id}
+                  td #{order.date}
                   td
                     -const url = '/history-buy-detail?id=' + order.id
                     a(href=url) Xem
