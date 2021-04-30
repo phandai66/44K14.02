@@ -36,11 +36,11 @@ module.exports.PostLogin = async (req, res) => {
     if (account != null) {
         // Check password
         if (account.password !== password) {
-            messages.push(`Wrong password!`)
+            messages.push(`Username or password is wrong!`)
         }
     } else {
         // When account == null
-        messages.push(`Username doesn't exist!`)
+        messages.push(`Username or password is wrong!`)
     }
 
     if (messages.length > 0) {
