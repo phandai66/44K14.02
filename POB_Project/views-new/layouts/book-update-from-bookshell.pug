@@ -14,6 +14,8 @@ hr.ngang
           tr.table-title
             th(scope='col') Tên sách
             th(scope='col') Số lượng
+            th(scope='col') Người bán
+            th(scope='col') Số điện thoại
             th(scope='col') Chấp nhận
         tbody
           if bookshell
@@ -27,10 +29,17 @@ hr.ngang
                   input(name='count', value=book.count, hidden)
                   th
                     p #{book.count}
-                  th(style="display: flex; flex-direction: row; justify-content: center;")
-                    input.btn.btn-primary(type='submit', value="Duyệt bài") 
-                    a(href=`/delete-book-sell/${book.id}`, style="display: flex; flex-direction: row; align-items: center; justify-content: center; padding-left: 10px;")
-                      i(style="font-size: 1.5rem;").fas.fa-trash-alt
+                  th 
+                    p #{book.userSold}
+                  th
+                    p #{book.userPhone}
+                  th
+                    ul(style="list-style: none; margin: auto;")
+                      li(style="display: inline-block; margin: auto;")
+                        input.btn.btn-primary(type='submit', value="Duyệt bài") 
+                      li(style="display: inline-block; margin-bottom: 5px;")
+                        a(href=`/delete-book-sell/${book.id}`, style="display: flex; flex-direction: row; align-items: center; justify-content: center; padding-left: 10px;")
+                          i(style="font-size: 1.5rem;").fas.fa-trash-alt
 
 include ../components/footer.pug
 include ../components/jsscript.pug

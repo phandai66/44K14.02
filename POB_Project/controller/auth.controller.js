@@ -82,6 +82,8 @@ module.exports.PostRegister = async (req, res) => {
     } 
     if (!phone) {
         messages.push('Phone field is empty!')
+    } else if () {
+        
     }
     if (!classs) {
         messages.push('Class field is empty!')

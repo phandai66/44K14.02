@@ -36,8 +36,14 @@ module.exports.postBookshell = async (req, res) => {
 module.exports.getIncreaseBookBD = async (req, res) => {
     const acc = await Currentuser.getCurrentUser(req, res)
     const bookshell = await Bookshell.find({ status : false })
+    const listBookSell = []
+    for (let i = 0; i < bookshell.length; i++) {
+        const account = await Account.findById(bookshell[i].userId)
+        listBookSell.push({ id: bookshell[i].id, bookId: bookshell[i].bookId, bookName: bookshell[i].bookName,
+                            count: bookshell[i].count, userSold: account.username, userPhone: account.phone })
+    }
     // console.log(bookshell)
-    res.render('layouts/book-update-from-bookshell', { bookshell : bookshell, username : acc})
+    res.render('layouts/book-update-from-bookshell', { bookshell : listBookSell, username : acc})
 }
 
 //cập nhật sách trong db
