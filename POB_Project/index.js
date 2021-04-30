@@ -8,7 +8,7 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 var cookieSession = require('cookie-session')
 
-// Import routers
+// Tuyến đường
 const authRouter = require('./routes/auth.route')
 const bookRouter = require('./routes/book.route')
 const booksellRouter = require('./routes/booksell.route')
@@ -28,7 +28,7 @@ app.use(cookieSession({
     maxAge: 3 * 60 * 60 * 1000 // 3 hours
 }))
 
-// Config mongoose to connect to MongoDB Atlas
+//kết nối mongoDB atlas
 mongoose.connect(process.env.MONGO_URL , {useNewUrlParser: true, useUnifiedTopology: true})
         .then(data => console.log(`Connect database successful!`))
         .catch(err => console.log(`Cannot connect database!`));

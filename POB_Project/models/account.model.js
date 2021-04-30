@@ -22,8 +22,8 @@ const accountSchema = new Schema({
     },
     role: {
         type: String,
-        default: 'user'
+        default: 'user' //mặc định tài khoản tạo trên web là người mua/bán, tài khoản admin tạo ngay trong DB
     }
 })
 
-module.exports = mongoose.model('Account', accountSchema, 'account')
+module.exports = mongoose.model('Account', accountSchema, 'account') //tên model, định dạng schema (kiểu dữ liệu, mặc định...), collection trong DB
