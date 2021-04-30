@@ -161,8 +161,15 @@ p {
     margin-right: 20px; 
     font-size: 25px;
 }
-.header .header_icon ul li .info-icon i{
+
+.header .header_icon ul li .info-icon i.fas.fa-shopping-bag{
     color: #e84e4e;
+}
+.header .header_icon ul li .info-icon i.fa.fa-sign-out-alt{
+    color: gray;
+}
+.header .header_icon ul li .info-icon i.fas.fa-user{
+    color: gray;
 }
 /* 1. Header end */
 
