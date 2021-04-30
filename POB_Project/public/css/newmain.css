@@ -678,10 +678,10 @@ th,td{
     background-color: #fdefe1;
 } */
 
-.btnn {
+/* .btnn {
     background-color: #d14031;
     border:#d14031;
-}
+} */
 .btn-primary{
     background-color:#d14031 ;
     border:#d14031;
@@ -691,6 +691,10 @@ th,td{
     color: #d14031;
     border: 1px solid #d14031;
 }
+.btn-register:hover{
+    color: #de522f !important;
+}
+
 /* 8. Basket end */
 
 /* 9. Login start  */
