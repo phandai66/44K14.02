@@ -102,6 +102,7 @@ module.exports.deleteItem = async (req, res) => {
     res.redirect('/cart')
 }
 
+//xem giỏ hàng
 module.exports.showBasket = async (req, res) => {
     const acc = await Currentuser.getCurrentUser(req, res)
     const { username } = req.user

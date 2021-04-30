@@ -127,7 +127,7 @@ module.exports.getBookById = async (req, res) => {
 
 module.exports.getBookByName = async (req, res) => {
     if (req.query.name == undefined) {
-        res.redirect('/index')
+        res.redirect('/index') //nếu không nhập gì mà bấm tìm kiếm thì redirect /index
     } else {
         const books = await Book.find({ bookName: { $regex: req.query.name, '$options': 'i' } })
         if (req.user) {

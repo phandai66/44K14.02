@@ -1,14 +1,14 @@
-require('dotenv').config()
+require('dotenv').config() //một biến môi trường dùng để bảo mật các thông tin quan trọng như username, password, url database,...
 
 // Dependencies
-const express = require('express')
+const express = require('express') //framework dành cho nodejs 
 const app = express()
-const mongoose = require('mongoose')
-const path = require('path')
+const mongoose = require('mongoose') //import mongoose để kết với mongodb
+const path = require('path') //hỗ trợ truy cập các tập hoặc cái đường dẫn thư mục
 const cookieParser = require('cookie-parser')
 var cookieSession = require('cookie-session')
 
-// Tuyến đường
+// nhập tuyến đường
 const authRouter = require('./routes/auth.route')
 const bookRouter = require('./routes/book.route')
 const booksellRouter = require('./routes/booksell.route')
@@ -33,8 +33,10 @@ mongoose.connect(process.env.MONGO_URL , {useNewUrlParser: true, useUnifiedTopol
         .then(data => console.log(`Connect database successful!`))
         .catch(err => console.log(`Cannot connect database!`));
 
-// Config static files & view engine
+//Sử dụng tất cả file trong thư mục public, dùng để chứ những file css
 app.use('/static', express.static(path.join(__dirname, 'public')))
+
+//Thiết lập template engine pug
 app.set('views', path.join(__dirname, 'views-new'))
 app.set('view engine', 'pug')
 
