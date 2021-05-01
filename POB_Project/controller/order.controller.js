@@ -134,8 +134,9 @@ module.exports.showBasket = async (req, res) => {
     //sản phẩm = lấy ra 1 sản phẩm từ collection Basket khi userID (Basket) = account.id (account)
     const basket = await Basket.findOne({ userID: account.id }) 
 
+    //nếu không có giỏ hàng thì 
     if (!basket) {
-        res.render('layouts/basket', { username : acc })
+        res.render('layouts/basket', { username : acc }) //tham số {} sẽ dùng ở view
         return
     }
 

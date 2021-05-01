@@ -133,7 +133,7 @@ module.exports.getBookByName = async (req, res) => {
     } else {
         const books = await Book.find({ bookName: { $regex: req.query.name, '$options': 'i' } }) //$regex ghi định dạng của name, $options': 'i' nghĩa là không phân biệt hoa thường
         if (req.user) {
-            const { username } = req.user
+            const { username } = req.user //tương đương const username = req.user.username
             const acc = await accountModel.findOne({ username })
             res.render('layouts/bookshop', { books: books, username: acc.username })
             return
