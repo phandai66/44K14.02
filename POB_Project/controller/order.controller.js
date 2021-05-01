@@ -134,7 +134,7 @@ module.exports.showBasket = async (req, res) => {
     //sản phẩm = lấy ra 1 sản phẩm từ collection Basket khi userID (Basket) = account.id (account)
     const basket = await Basket.findOne({ userID: account.id }) 
 
-    //nếu không có giỏ hàng thì 
+    //nếu không có sp trong giỏ hàng thì 
     if (!basket) {
         res.render('layouts/basket', { username : acc }) //tham số {} sẽ dùng ở view
         return
@@ -149,7 +149,7 @@ module.exports.showBasket = async (req, res) => {
         baskets.push({ stt: i + 1, bookId: book.id, bookName: book.bookName, quantity: countArr[i], price: book.price  * countArr[i] })
     }
     if (bookArr.length == 0) {
-        basket.status = 'empty'
+        basket.status = 'empty' //trong DB
     }
     res.render('layouts/basket', { orders: baskets, status: basket.status, total: basket.total, orderID: basket.orderID, username : acc })
     return
