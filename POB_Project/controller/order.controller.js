@@ -131,7 +131,8 @@ module.exports.showBasket = async (req, res) => {
     const account = await Account.findOne({ username }) 
     const baskets = []
 
-    const basket = await Basket.findOne({ userID: account.id }) //sản phẩm = lấy ra 1 sản phẩm từ collection Basket khi userID (Basket) = account.id (account)
+    //sản phẩm = lấy ra 1 sản phẩm từ collection Basket khi userID (Basket) = account.id (account)
+    const basket = await Basket.findOne({ userID: account.id }) 
 
     if (!basket) {
         res.render('layouts/basket', { username : acc })
