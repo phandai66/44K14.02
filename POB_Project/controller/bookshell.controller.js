@@ -3,7 +3,7 @@ const Book = require("../models/book.model")
 const Account = require('../models/account.model')
 const Currentuser = require('../controller/account.check')
 
-// lấy sách cần thua mua
+// lấy sách cần thu mua
 module.exports.getBookshell = async (req, res) => {
     // const book = await Book.findById(req.query.id)
     const acc = await Currentuser.getCurrentUser(req, res)
