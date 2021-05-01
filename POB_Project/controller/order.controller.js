@@ -154,12 +154,13 @@ module.exports.showBasket = async (req, res) => {
     return
 } //kết thúc xem giỏ hàng
 
+//Hủy đơn hàng
 module.exports.cancelOrder = async (req, res) => {
     const orderID = req.params.orderID
     const order = await Order.findById(orderID)
     await Order.findByIdAndDelete({ _id: order._id })
     res.redirect('/order-pay')
-}
+} //kết thúc Hủy đơn hàng
 
 module.exports.payOrder = async (req, res) => {
     const { username } = req.user
