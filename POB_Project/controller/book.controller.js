@@ -96,8 +96,9 @@ module.exports.getBooksDetailsForEdit = async (req, res) => {
     }
 }
 
+//Chỉnh sửa sách bởi Admin
 module.exports.postUpdateBook = async (req, res) => {
-    await Book.findByIdAndUpdate(req.body.id, { bookName : req.body.bookName, price : req.body.price, image : req.body.image})
+    await Book.findByIdAndUpdate(req.body.id, { bookName : req.body.bookName, price : req.body.price, image : req.body.image}) //req.body.abcxyz là cái mà admin nhập ở giao diện
     res.redirect('/book-manager')
     return
 }
