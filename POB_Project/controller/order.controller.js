@@ -2,7 +2,7 @@ const Order = require('../models/order.model')
 const Account = require('../models/account.model')
 const Book = require('../models/book.model')
 const Basket = require('../models/basket.model')
-const Currentuser = require('../controller/account.check')
+const Currentuser = require('../controller/account.check') //đưa đến account.check.js
 
 module.exports.insertIntoBasket = async (req, res) => {
     const id = req.params.id
@@ -128,10 +128,10 @@ module.exports.deleteItem = async (req, res) => {
 module.exports.showBasket = async (req, res) => {
     const acc = await Currentuser.getCurrentUser(req, res)
     const { username } = req.user
-    const account = await Account.findOne({ username })
+    const account = await Account.findOne({ username }) 
     const baskets = []
 
-    const basket = await Basket.findOne({ userID: account.id })
+    const basket = await Basket.findOne({ userID: account.id }) //sản phẩm = lấy ra 1 sản phẩm từ collection Basket khi userID (Basket) = account.id (account)
 
     if (!basket) {
         res.render('layouts/basket', { username : acc })
@@ -142,7 +142,7 @@ module.exports.showBasket = async (req, res) => {
     const countArr = basket.count
 
     for (let i = 0; i < bookArr.length; i++) {
-        const book = await Book.findById(bookArr[i])
+        const book = await Book.findById(bookArr[i]) //tìm book theo trường book.id
         
         baskets.push({ stt: i + 1, bookId: book.id, bookName: book.bookName, quantity: countArr[i], price: book.price  * countArr[i] })
     }
@@ -151,7 +151,7 @@ module.exports.showBasket = async (req, res) => {
     }
     res.render('layouts/basket', { orders: baskets, status: basket.status, total: basket.total, orderID: basket.orderID, username : acc })
     return
-}
+} //kết thúc xem giỏ hàng
 
 module.exports.cancelOrder = async (req, res) => {
     const orderID = req.params.orderID

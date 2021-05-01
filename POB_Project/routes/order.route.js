@@ -6,7 +6,7 @@ const authMiddleware = require('../middlewares/auth.middleware')
 
 // GET requests
 router.get('/add/:id', authMiddleware.requireAuth, authMiddleware.justUser, controller.insertIntoBasket)
-router.get('/cart', authMiddleware.requireAuth, authMiddleware.justUser, controller.showBasket)
+router.get('/cart', authMiddleware.requireAuth, authMiddleware.justUser, controller.showBasket) //xem giỏ hàng
 router.get('/remove/:id', authMiddleware.requireAuth, authMiddleware.justUser, controller.removeItem)
 router.get('/delete/:id', authMiddleware.requireAuth, authMiddleware.justUser, controller.deleteItem)
 router.get('/cancel/:orderID', authMiddleware.requireAuth, authMiddleware.justUser, controller.cancelOrder)
