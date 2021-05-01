@@ -1,7 +1,7 @@
 const Book = require("../models/book.model")
 const Order = require('../models/order.model')
 const Currentuser = require('../controller/account.check')
-const accountModel = require("../models/account.model")
+const accountModel = require("../models/account.model")  //hai cái này như nhau, đều dẫn đến account.model.js
 const Account = require('../models/account.model')
 
 //Admin thêm sách mới vào giỏ shop
@@ -17,20 +17,20 @@ module.exports.postNewBook = async (req, res) => {
 
 //Load trang thêm sách mới
 module.exports.getNewBook = async (req, res) => {
-    if (req.user) {
-        const { username } = req.user
+    if (req.user) { //nếu như đã đăng nhập
+        const { username } = req.user   //hai dòng này lấy ra người dùng đang đăng nhập
         const acc = await Account.findOne({ username })
-        res.render('layouts/book-form-new', { username : acc.username })
+        res.render('layouts/book-form-new', { username : acc.username }) //render view book-form-new.js đồng thời truyền đến username đang đăng nhập
         return
-    } else {
-        res.redirect('/login')
+    } else { //nếu như chưa đăng nhập
+        res.redirect('/login') //thì truyền thằng đến page login
     }
 }
 
 //Load hết sách trong db ra
 module.exports.getBooks = async(req, res) => {
 
-    //TODO DUmmy other here to test
+    //Tạo đại để kiểm tra
     // const day = Date.parse('2021-04-23');
     // const order = new Order();
     // order.userID = 'xyz'
@@ -125,11 +125,12 @@ module.exports.getBookById = async (req, res) => {
     }
 }
 
+//Tìm kiếm
 module.exports.getBookByName = async (req, res) => {
     if (req.query.name == undefined) {
         res.redirect('/index') //nếu không nhập gì mà bấm tìm kiếm thì redirect /index
     } else {
-        const books = await Book.find({ bookName: { $regex: req.query.name, '$options': 'i' } })
+        const books = await Book.find({ bookName: { $regex: req.query.name, '$options': 'i' } }) //$regex ghi định dạng của name, $options': 'i' nghĩa là không phân biệt hoa thường
         if (req.user) {
             const { username } = req.user
             const acc = await accountModel.findOne({ username })
