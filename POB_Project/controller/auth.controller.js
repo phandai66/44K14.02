@@ -3,14 +3,14 @@ const Currentuser = require('../controller/account.check')
 
 module.exports.GetLogin = async (req, res) => {
     const { username } = req.signedCookies
-    if (username) {
-        const account = await Account.findOne({ username })
-        res.cookie('username', username, { signed: true, maxAge: 3 * 60 * 60 * 1000 }) // 3 hours
-        req.user = { username: account.username, role: account.role }
-        res.redirect('/index')
+    if (username) { // check xem cookie còn hiệu lực hay không
+        const account = await Account.findOne({ username }) // tìm tài khoản đang đăng nhập
+        res.cookie('username', username, { signed: true, maxAge: 3 * 60 * 60 * 1000 }) // 3 giờ // set lại timelife
+        req.user = { username: account.username, role: account.role } // set người dùng hiện tại vào request
+        res.redirect('/index') // quay lại trang sách
         return
-    } else {
-        res.render('auth/login')
+    } else { // trường hợp cookie hết hiệu lực
+        res.render('auth/login') // in ra trang đăng nhập
         return
     }
 }
@@ -28,28 +28,27 @@ module.exports.GetLogout = (req, res) => {
 }
 
 module.exports.PostLogin = async (req, res) => {
-    const acc = await Currentuser.getCurrentUser(req, res)
-    const { username, password, fromUrl } = req.body
+    const acc = await Currentuser.getCurrentUser(req, res) // lấy tên người dùng hiện tại
+    const { username, password, fromUrl } = req.body  // lấy giá trị username, password người dùng nhập
     const messages = [];
-    const account = await Account.findOne({ username })
-    // Check username exist
+    const account = await Account.findOne({ username }) // lấy thông tin tài khoản theo username
+    // Kiểm tra username tồn tại
     if (account != null) {
-        // Check password
+        // Kiểm tra password
         if (account.password !== password) {
             messages.push(`Username or password is wrong!`)
         }
     } else {
-        // When account == null
+        // Khi account == null
         messages.push(`Username or password is wrong!`)
     }
 
-    if (messages.length > 0) {
-        res.render('auth/login', { messages : messages, username: acc })
+    if (messages.length > 0) { 
+        res.render('auth/login', { messages })
         return
-    } else {
-        res.cookie('username', username, { signed: true, maxAge: 3 * 60 * 60 * 1000 }) // 3 hours 
-        req.user = { username: username, role: account.role }
-
+    } else { 
+        res.cookie('username', username, { signed: true, maxAge: 3 * 60 * 60 * 1000 }) // 3 giờ // set lại timelife cho cookie
+        req.user = { username: username, role: account.role } // set người dùng đang đăng nhập vào request
 
         if (account.role == 'admin') {
             res.redirect('/admin')
@@ -89,7 +88,7 @@ module.exports.PostRegister = async (req, res) => {
 
     const account = await Account.findOne({ username })
 
-    // Check username exist
+    // Kiểm tra username tồn tại
     if (account != null) {
         messages.push('Username already existed!')
     }
@@ -100,7 +99,7 @@ module.exports.PostRegister = async (req, res) => {
     } else {
         const newAcc = await new Account(req.body)
         newAcc.save()
-        res.cookie('username', username, { signed: true, maxAge: 3 * 60 * 60 * 1000 }) // 3 hours
+        res.cookie('username', username, { signed: true, maxAge: 3 * 60 * 60 * 1000 }) // 3 giờ
         req.body = { username: username, role: newAcc.role }
         res.redirect('/index')
         return

@@ -7,21 +7,26 @@ include ../components/navbarAdmin.pug
 .h Thêm Sách
 hr.ngang
 .container
+  div.row
+    div.col-sm-4
+    div.col-sm-4
+      if message
+        .alert.alert-danger= message
   div.row.mt-3.mb-5
     div.col-sm-4
     form.form-horizontal.col-sm-4(action='/create-book', method='POST')
       .mb-2.mt-2
         label.form-label(for='bookName') Tên sách
-        input#bookName.form-control(type='text', name='bookName')
+        input#bookName.form-control(type='text', name='bookName', required=true)
       .mb-3
         label.form-label(for='price') Giá
-        input#price.form-control(type='number', name='price', min='0')
+        input#price.form-control(type='number', name='price', min='0', required=true)
       .mb-3
         label.form-label(for='image') Hình ảnh
-        input#image.form-control(type='text', name='image')
+        input#image.form-control(type='text', name='image', required=true)
       .mb-3
         label.form-label(for='count') Số lượng
-        input#count.form-control(type='number', name='count', min='1')
+        input#count.form-control(type='number', name='count', min='1', required=true)
       input.btn.btn-primary(type='submit', title='Gửi')
 
 include ../components/footer.pug

@@ -14,7 +14,7 @@ module.exports.insertIntoBasket = async (req, res) => {
         const bookArr = [id];
         const countArr = [1];
         // TODO: need to add date
-        const newBasket = new Basket({ userID: account.id, bookID: bookArr, count: countArr, total: book.price, status: 'in basket', date: date() })
+        const newBasket = new Basket({ userID: account.id, bookID: bookArr, count: countArr, total: book.price, status: 'in basket', date: new Date()  })
         await newBasket.save()
         res.redirect('/cart')
     } else {
@@ -74,7 +74,7 @@ module.exports.insertIntoBasket = async (req, res) => {
             }
         }
         basket.status = 'in basket'
-        basket.date = date()
+        basket.date = new Date()
         // TODO: need add date
         await Basket.updateOne({ userID: account.id }, basket)
         res.redirect('/cart')
@@ -131,12 +131,12 @@ module.exports.showBasket = async (req, res) => {
     const account = await Account.findOne({ username }) 
     const baskets = []
 
-    //sản phẩm = lấy ra 1 sản phẩm từ collection Basket khi userID (Basket) = account.id (account)
+    
     const basket = await Basket.findOne({ userID: account.id }) 
 
-    //nếu không có sp trong giỏ hàng thì 
+    //nếu không có sp trong giỏ hàng
     if (!basket) {
-        res.render('layouts/basket', { username : acc }) //tham số {} sẽ dùng ở view
+        res.render('layouts/basket', { username : account.username }) 
         return
     }
 
@@ -144,20 +144,20 @@ module.exports.showBasket = async (req, res) => {
     const countArr = basket.count
 
     for (let i = 0; i < bookArr.length; i++) {
-        const book = await Book.findById(bookArr[i]) //tìm book theo trường book.id
+        const book = await Book.findById(bookArr[i]) 
         
         baskets.push({ stt: i + 1, bookId: book.id, bookName: book.bookName, quantity: countArr[i], price: book.price  * countArr[i] })
     }
     if (bookArr.length == 0) {
         basket.status = 'empty' //trong DB
     }
-    res.render('layouts/basket', { orders: baskets, status: basket.status, total: basket.total, orderID: basket.orderID, username : acc })
+    res.render('layouts/basket', { orders: baskets, status: basket.status, total: basket.total, orderID: basket.orderID, username : account.username })
     return
 } //kết thúc xem giỏ hàng
 
 //Hủy đơn hàng
 module.exports.cancelOrder = async (req, res) => {
-    const orderID = req.params.orderID
+    const orderID = req.params.orderID 
     const order = await Order.findById(orderID)
     await Order.findByIdAndDelete({ _id: order._id })
     res.redirect('/order-pay')
@@ -168,7 +168,7 @@ module.exports.payOrder = async (req, res) => {
     const account = await Account.findOne({ username })
     const basket = await Basket.findOne({ userID: account.id })
 
-    const order = new Order({ userID: basket.userID, bookID: basket.bookID, count: basket.count, date: date(), total: basket.total })
+    const order = new Order({ userID: basket.userID, bookID: basket.bookID, count: basket.count, date: new Date(), total: basket.total })
     await order.save()
 
     basket.status = 'empty'
@@ -250,13 +250,13 @@ module.exports.rejectOrder = async (req, res) => {
     res.redirect('/order-manage')
 }
 
-const date = function () {
-    let year = new Date().getFullYear()
-    let abc = (new Date().getMonth() + 1).toString()
-    let month =  abc.length == 1 ? '0' + abc : abc
-    let day = new Date().getDate()
+// const date = function () {
+//     let year = new Date().getFullYear()
+//     let abc = (new Date().getMonth() + 1).toString()
+//     let month =  abc.length == 1 ? '0' + abc : abc
+//     let day = new Date().getDate()
 
-    let date = year + '-'+ month + '-' + day
+//     let date = year + '-'+ month + '-' + day
 
-    return date
-}
+//     return date
+// }

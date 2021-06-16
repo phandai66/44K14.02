@@ -12,14 +12,24 @@ module.exports.getStatis = async (req, res) => {
         res.render('layouts/statis-page', { array : array, username : acc.username })
     } else {
         if (req.query.type === 'day') {
-            const day = new Date(req.query.value);
+            
+            const day = req.query.value[8]=='0' ? req.query.value[9] : req.query.value.toString().substring(8,10)
+            let month =  req.query.value[5]=='0' ? req.query.value[6] : req.query.value.substring(5,7)
+            month = parseInt(month) - 1
+            month = month.toString()
+            const year = req.query.value.toString().substring(0, 4);
 
             const result = new Map()
-            const orders = await Order.find({date : day, status : 'accept'})
+            const orders = await Order.find({status : 'accept'})
+            
+            let list = []
+            for (let i = 0; i < orders.length; i++) {
+                if (orders[i].date.getDate() == day  && orders[i].date.getMonth() == month && orders[i].date.getFullYear() == year) {
+                    list.push(orders[i]);
+                }
+            }
 
-            //console.log(orders)
-
-            const array = await statis(result, orders)
+            const array = await statis(result, list)
 
             res.render('layouts/statis-page', { array : array, username : acc.username })
 

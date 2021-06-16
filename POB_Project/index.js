@@ -8,7 +8,7 @@ const path = require('path') //hỗ trợ truy cập các tập hoặc cái đư
 const cookieParser = require('cookie-parser')
 var cookieSession = require('cookie-session')
 
-// nhập tuyến đường
+
 const authRouter = require('./routes/auth.route')
 const bookRouter = require('./routes/book.route')
 const booksellRouter = require('./routes/booksell.route')
@@ -33,7 +33,7 @@ mongoose.connect(process.env.MONGO_URL , {useNewUrlParser: true, useUnifiedTopol
         .then(data => console.log(`Connect database successful!`))
         .catch(err => console.log(`Cannot connect database!`));
 
-//Sử dụng tất cả file trong thư mục public, dùng để chứ những file css
+
 app.use('/static', express.static(path.join(__dirname, 'public')))
 
 //Thiết lập template engine pug

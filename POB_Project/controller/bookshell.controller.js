@@ -5,7 +5,6 @@ const Currentuser = require('../controller/account.check')
 
 // lấy sách cần thu mua
 module.exports.getBookshell = async (req, res) => {
-    // const book = await Book.findById(req.query.id)
     const acc = await Currentuser.getCurrentUser(req, res)
     const books = await Book.find({});
     res.render('layouts/book-shell', { books : books, username : acc })
@@ -16,7 +15,6 @@ module.exports.postBookshell = async (req, res) => {
     const book = await Book.findById(req.body.bookId);
     const bookshell = new Bookshell();
 
-    //TODO Dummy userID here
     const { username } = req.user
     const account = await Account.findOne({ username })
     const userID = account.id
@@ -27,7 +25,6 @@ module.exports.postBookshell = async (req, res) => {
     bookshell.status = false;
     await bookshell.save();
 
-    //TODO Dummy render to test
     res.redirect('/index')
     return
 }
@@ -42,15 +39,11 @@ module.exports.getIncreaseBookBD = async (req, res) => {
         listBookSell.push({ id: bookshell[i].id, bookId: bookshell[i].bookId, bookName: bookshell[i].bookName,
                             count: bookshell[i].count, userSold: account.username, userPhone: account.phone })
     }
-    // console.log(bookshell)
     res.render('layouts/book-update-from-bookshell', { bookshell : listBookSell, username : acc})
 }
 
 //cập nhật sách trong db
 module.exports.postIncreaseBookBD = async (req, res) => {
-    // console.log('bookId ' + req.body.bookId)
-    // console.log('id don hang ' + req.body.id)
-    // console.log('count ' + req.body.count)
     const book = await Book.findById(req.body.bookId)
     book.count += parseInt(req.body.count)
     await Book.updateOne({_id : req.body.bookId}, book)
@@ -60,8 +53,6 @@ module.exports.postIncreaseBookBD = async (req, res) => {
     bookshell.status = true;
     await Bookshell.updateOne({_id : req.body.id}, bookshell)
 
-
-    //TODO redirect dummy here
     res.redirect('/admin')
 }
 

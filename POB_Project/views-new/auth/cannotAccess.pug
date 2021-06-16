@@ -1,25 +1,8 @@
-if (!basket) {
-        const bookArr = [id];
-        const countArr = [1];
-        // TODO: need to add date
-        const newBasket = new Basket({ userID: account.id, bookID: bookArr, count: countArr, total: book.price, status: 'in basket', date : date() })
-        await newBasket.save()
-        res.redirect('/cart')
-    } else {
-        const index = basket.bookID.indexOf(id)
-        if (index == -1) {
-            basket.bookID.push(id)
-            basket.count.push(1)
-            basket.total = basket.total + book.price
-        } else {
-            let idx = basket.bookID.indexOf(id)
-            let itemCount = basket.count[basket.bookID.indexOf(id)]
-            basket.count[idx] = itemCount + 1
-            basket.total = basket.total + book.price
-        }
-        basket.status = 'in basket'
-        basket.date = date()
-        // TODO: need add date
-        await Basket.updateOne({ userID: account.id }, basket)
-        res.redirect('/cart')
-    }
+include ../components/head.pug
+block append head 
+  title Admin Dashboard
+include ../components/headerAdmin.pug
+include ../components/navbarAdmin.pug
+h1 Your account cannot access this page
+include ../components/footer.pug
+include ../components/jsscript.pug

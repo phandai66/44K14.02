@@ -5,7 +5,6 @@ const Account = require('../models/account.model')
 const Currentuser = require('../controller/account.check')
 
 module.exports.getOrderHistory = async (req, res) => {
-    //TODO Dummy id user to get history
     const { username } = req.user
     const account = await Account.findOne({ username })
     const userID = account.id
@@ -15,7 +14,6 @@ module.exports.getOrderHistory = async (req, res) => {
 }
 
 module.exports.getSoldHistory = async (req, res) => {
-    //TODO Dummy id user to get history orther
     const { username } = req.user
     const account = await Account.findOne({ username })
     const userID = account.id
